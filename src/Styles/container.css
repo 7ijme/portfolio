@@ -185,7 +185,6 @@ section.projects ul .project {
   grid-template-areas: "header header" "description description" "link link";
   grid-template-columns: 1fr 2fr;
   place-items: center;
-  outline: 3px solid #333;
   border-top: 5px solid #fff;
 }
 section.projects ul .project .project-header {
