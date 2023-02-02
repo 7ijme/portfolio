@@ -1,0 +1,249 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto auto;
+}
+
+header {
+  background-color: rgb(36, 36, 36);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+header img {
+  width: 8rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+header ul {
+  list-style: none;
+  display: flex;
+  flex-grow: 1;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-evenly;
+}
+header ul li a {
+  color: #eee;
+}
+
+@-webkit-keyframes GradientMoveBackAndForth {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes GradientMoveBackAndForth {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+@-webkit-keyframes placeHolderShimmer {
+  0% {
+    background-position: -30vw 0;
+  }
+  100% {
+    background-position: 70vw 0;
+  }
+}
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -30vw 0;
+  }
+  100% {
+    background-position: 70vw 0;
+  }
+}
+section {
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+section h2 {
+  font-family: "Archivo Black";
+}
+section.diagonal {
+  position: relative;
+}
+section.diagonal::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: steelblue;
+  background-image: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+  background-size: 200% 200%;
+  animation: GradientMoveBackAndForth 3s ease-in-out infinite alternate-reverse;
+  transform: skewY(-5deg);
+}
+section.waves {
+  --mask: radial-gradient(67.08px at 50% 90px, #000 99%, #0000 101%)
+      calc(50% - 60px) 0/120px 51% repeat-x,
+    radial-gradient(67.08px at 50% -60px, #0000 99%, #000 101%) 50% 30px/120px
+      calc(51% - 30px) repeat-x,
+    radial-gradient(67.08px at 50% calc(100% - 90px), #000 99%, #0000 101%)
+      calc(50% - 60px) 100%/120px 51% repeat-x,
+    radial-gradient(67.08px at 50% calc(100% + 60px), #0000 99%, #000 101%)
+      50% calc(100% - 30px) / 120px calc(51% - 30px) repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+  background: linear-gradient(to right, #00f260, #0575e6, #00f260);
+  -webkit-animation-duration: 7s;
+          animation-duration: 7s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
+          animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+section.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+section.skills ul {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+section.skills ul .skill-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 1rem;
+  padding: 0.2rem 1rem;
+  background-color: #333;
+  border-radius: 5px;
+}
+section.skills ul .skill-wrapper .skill {
+  --skill-width: 100%;
+  position: absolute;
+  border-radius: 5px;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--skill-width);
+  -webkit-animation: 1s ease-in-out skillWidth;
+          animation: 1s ease-in-out skillWidth;
+}
+section.skills ul .skill-wrapper h3 {
+  z-index: 1;
+}
+section.about {
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+section.about p {
+  max-width: 40rem;
+}
+section.projects {
+  color: #fff;
+}
+section.projects h2 {
+  margin-bottom: 1rem;
+}
+section.projects ul {
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  place-items: center;
+  margin: 0 auto;
+}
+section.projects ul .project {
+  max-width: 300px;
+  display: grid;
+  gap: 0.5rem;
+  background-color: #333;
+  border-radius: 5px;
+  grid-template-areas: "header header" "description description" "link link";
+  grid-template-columns: 1fr 2fr;
+  place-items: center;
+  outline: 3px solid #333;
+  border-top: 5px solid #fff;
+}
+section.projects ul .project .project-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+  grid-area: header;
+  place-items: center;
+  padding: 1rem;
+}
+section.projects ul .project .project-header img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+section.projects ul .project p {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  grid-area: description;
+  padding-bottom: 0.5rem;
+}
+section.projects ul .project .link {
+  grid-area: link;
+  width: 100%;
+  background-color: rgb(36, 36, 36);
+  padding: 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  background-color: rgb(36, 36, 36);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@-webkit-keyframes skillWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--skill-width);
+  }
+}
+
+@keyframes skillWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--skill-width);
+  }
+}
+@media only screen and (min-width: 768px) {
+  section.projects ul {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+  }
+}
