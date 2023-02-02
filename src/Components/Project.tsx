@@ -26,7 +26,11 @@ export default function Project({ project }: Props) {
       </div>
       <p>{project.description}</p>
       <div className="link">
-        <a href={project.link}>Check it out!</a>
+        <a
+          href={project.link}
+          target="_blank">
+          Check it out!
+        </a>
       </div>
     </div>
   );
