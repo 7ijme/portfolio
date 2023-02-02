@@ -247,3 +247,9 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
   }
 }
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  footer {
+    margin-bottom: 50px;
+  }
+}
