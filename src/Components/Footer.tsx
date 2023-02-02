@@ -8,7 +8,7 @@ export default function Footer({}: Props) {
     <footer>
       <Contact />
       <code>
-        Created with vite + React + TypeScript <br />
+        Created with Vite + React + TypeScript <br />
         <a
           href="https://github.com/7ijme/biography"
           target="_blank">
