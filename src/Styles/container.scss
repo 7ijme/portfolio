@@ -169,7 +169,8 @@ section {
       // display: flex;
       // flex-wrap: wrap;
       // justify-content: center;
-      // place-items: center;
+      place-items: center;
+      place-content: center;
       // margin: 0 auto;
 
       .project {
