@@ -46,6 +46,13 @@
       "image": "./boxplot.png",
       "link": "/projects/boxplot",
       "color": "#aee0f9"
+    },
+    {
+      "name": "Sniped!",
+      "description": "Discord bot in over 6000 server!",
+      "image": "./sniped.png",
+      "link": "https://discord.com/api/oauth2/authorize?client_id=736917584439410688&permissions=8&scope=bot%20applications.commands",
+      "color": "#00ac3a"
     }
   ]
 }
