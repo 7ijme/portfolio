@@ -14,6 +14,7 @@ export default function Project({ project }: Props) {
         <img
           src={project.image}
           alt={project.name}
+          draggable="false"
         />
         <h3>{project.name}</h3>
       </div>
