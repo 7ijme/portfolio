@@ -49,7 +49,7 @@
     },
     {
       "name": "Sniped!",
-      "description": "Discord bot in over 6000 server!",
+      "description": "Discord bot in over 6000 servers! Allows you to snipe deleted & edited messages",
       "image": "./sniped.png",
       "link": "https://discord.com/api/oauth2/authorize?client_id=736917584439410688&permissions=8&scope=bot%20applications.commands",
       "color": "#00ac3a"
