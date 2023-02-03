@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Project } from "./Projects";
+import { ProjectType } from "./Projects";
 
 type Props = {
-  project: Project;
+  project: ProjectType;
 };
 
 export default function Project({ project }: Props) {

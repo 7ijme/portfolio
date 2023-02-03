@@ -6,7 +6,7 @@ type Props = {
   data: Data | null;
 };
 
-export type Skill = {
+export type SkillType = {
   name: string;
   level: number;
   bgcolor: string;

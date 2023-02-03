@@ -2,7 +2,7 @@ import React from "react";
 import { Data } from "./Container";
 import Project from "./Project";
 
-export type Project = {
+export type ProjectType = {
   name: string;
   description: string;
   image: string;

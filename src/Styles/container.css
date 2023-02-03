@@ -59,7 +59,7 @@ header ul li a {
     background-position: 100% 100%;
   }
 }
-@-webkit-keyframes placeHolderShimmer {
+@-webkit-keyframes wavesSlowSlide {
   0% {
     background-position: -30vw 0;
   }
@@ -67,7 +67,7 @@ header ul li a {
     background-position: 70vw 0;
   }
 }
-@keyframes placeHolderShimmer {
+@keyframes wavesSlowSlide {
   0% {
     background-position: -30vw 0;
   }
@@ -114,8 +114,8 @@ section.waves {
           animation-fill-mode: forwards;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-  -webkit-animation-name: placeHolderShimmer;
-          animation-name: placeHolderShimmer;
+  -webkit-animation-name: wavesSlowSlide;
+          animation-name: wavesSlowSlide;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
 }
@@ -169,14 +169,12 @@ section.projects h2 {
   margin-bottom: 1rem;
 }
 section.projects ul {
+  display: grid;
   gap: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  place-items: center;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 section.projects ul .project {
+  height: 100%;
   max-width: 300px;
   display: grid;
   gap: 0.5rem;
@@ -207,13 +205,14 @@ section.projects ul .project p {
   flex-direction: column;
   gap: 1rem;
   grid-area: description;
-  padding-bottom: 0.5rem;
+  padding: 0 1rem 0.5rem;
 }
 section.projects ul .project .link {
   grid-area: link;
   width: 100%;
   background-color: rgb(36, 36, 36);
   padding: 1rem;
+  place-self: end;
 }
 
 footer {

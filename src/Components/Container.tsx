@@ -2,16 +2,16 @@ import React from "react";
 import Header from "./Header";
 import "../Styles/container.css";
 import About from "./About";
-import Skills, { Skill } from "./Skills";
-import Projects, { Project } from "./Projects";
+import Skills, { SkillType } from "./Skills";
+import Projects, { ProjectType } from "./Projects";
 import Contact from "./Contact";
 import Footer from "./Footer";
 
 type Props = {};
 
 export type Data = {
-  projects: Project[];
-  skills: Skill[];
+  projects: ProjectType[];
+  skills: SkillType[];
 };
 
 export default function Container({}: Props) {
