@@ -1,12 +1,5 @@
 import React, { useEffect } from "react";
-
-export type Project = {
-  name: string;
-  description: string;
-  imgLocation: string;
-  link: string;
-  color: string;
-};
+import { Project } from "./Projects";
 
 type Props = {
   project: Project;
@@ -19,7 +12,7 @@ export default function Project({ project }: Props) {
       style={{ borderColor: project.color }}>
       <div className="project-header">
         <img
-          src={project.imgLocation}
+          src={project.image}
           alt={project.name}
         />
         <h3>{project.name}</h3>

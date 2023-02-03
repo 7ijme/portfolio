@@ -1,32 +1,27 @@
 import React from "react";
+import { Data } from "./Container";
 import Project from "./Project";
 
-type Props = {};
+export type Project = {
+  name: string;
+  description: string;
+  image: string;
+  link: string;
+  color: string;
+};
 
-export default function Projects({}: Props) {
-  const projects = [
-    {
-      name: "Algorithms",
-      description: "Dijkstra's & A* algorithm visualized",
-      imgLocation: "./algorithms.png",
-      link: "/projects/algorithms",
-      color: "white",
-    },
-    {
-      name: "Boxplot",
-      description: "Data representation tool",
-      imgLocation: "./boxplot.png",
-      link: "/projects/boxplot",
-      color: "#aee0f9",
-    },
-  ];
+type Props = {
+  data: Data | null;
+};
+
+export default function Projects({ data }: Props) {
   return (
     <section
       className="projects waves"
       id="projects">
       <h2>Projects</h2>
       <ul>
-        {projects.map((project) => (
+        {data?.projects.map((project) => (
           <Project project={project} />
         ))}
       </ul>
