@@ -64,6 +64,7 @@ export default function Rate({}: Props) {
           ))}
         </div>
         <input
+          disabled={hasVoted}
           type="text"
           name="comment"
           id="comment"
