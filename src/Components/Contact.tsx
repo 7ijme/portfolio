@@ -4,7 +4,7 @@ type Props = {};
 
 export default function Contact({}: Props) {
   return (
-    <div
+    <section
       id="contact"
       className="contact">
       <h2>Contact</h2>
@@ -25,6 +25,6 @@ export default function Contact({}: Props) {
           tijmevh@gmail.com
         </a>
       </p>
-    </div>
+    </section>
   );
 }

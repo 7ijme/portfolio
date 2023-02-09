@@ -99,7 +99,8 @@ section {
       radial-gradient(67.08px at 50% calc(100% + 60px), #0000 99%, #000 101%)
         50% calc(100% - 30px) / 120px calc(51% - 30px) repeat-x;
     mask: var(--mask);
-    background: linear-gradient(to right, #00f260, #0575e6, #00f260);
+    background: linear-gradient(to right, #00f260, #0575e6, #0575e6, #00f260);
+    background-size: contain;
     animation-duration: 7s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
@@ -136,7 +137,9 @@ section {
           top: 0;
           height: 100%;
           width: var(--skill-width);
-          animation: 1s ease-in-out skillWidth;
+          &.animate {
+            animation: 1.5s ease-out skillWidth;
+          }
         }
 
         h3 {
@@ -222,6 +225,25 @@ section {
           padding: 1rem;
           // height: 100%;
           place-self: end;
+        }
+      }
+    }
+  }
+  &.rate {
+    form {
+      .stars {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        label {
+          cursor: pointer;
+          input {
+            display: none;
+          }
+          .star {
+            color: #2257bf;
+            font-size: 2rem;
+          }
         }
       }
     }

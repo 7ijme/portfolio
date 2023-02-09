@@ -21,8 +21,11 @@ export default function Projects({ data }: Props) {
       id="projects">
       <h2>Projects</h2>
       <ul>
-        {data?.projects.map((project) => (
-          <Project project={project} />
+        {data?.projects.map((project, i) => (
+          <Project
+            project={project}
+            key={i}
+          />
         ))}
       </ul>
     </section>

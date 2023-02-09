@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 export type Skill = {
   name: string;
@@ -14,10 +15,15 @@ type Props = {
 export default function Skill({ skill }: Props) {
   const skillRef = React.useRef<HTMLDivElement>(null);
 
-  // set attributes for the skill bar
-  const skillBarStyle = {
-    width: skill.level + "%",
-  };
+  const { ref: inVieuwRef } = useInView({
+    onChange(inView) {
+      if (inView) {
+        skillRef.current?.classList.add("animate");
+      } else {
+        skillRef.current?.classList.remove("animate");
+      }
+    },
+  });
 
   useEffect(() => {
     if (skillRef.current) {
@@ -27,6 +33,7 @@ export default function Skill({ skill }: Props) {
 
   return (
     <div
+      ref={inVieuwRef}
       className="skill-wrapper"
       style={{ color: skill.color }}>
       <div

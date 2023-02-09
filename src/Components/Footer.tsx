@@ -6,7 +6,6 @@ type Props = {};
 export default function Footer({}: Props) {
   return (
     <footer>
-      <Contact />
       <code>
         Created with Vite + React + TypeScript <br />
         <a

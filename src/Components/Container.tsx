@@ -1,11 +1,13 @@
 import React from "react";
 import Header from "./Header";
-import "../Styles/container.css";
+import "../Styles/container.scss";
 import About from "./About";
 import Skills, { SkillType } from "./Skills";
 import Projects, { ProjectType } from "./Projects";
 import Footer from "./Footer";
 import data from "../assets/data.json";
+import Contact from "./Contact";
+import Rate from "./Rate";
 
 type Props = {};
 
@@ -21,6 +23,8 @@ export default function Container({}: Props) {
       <About />
       <Skills data={data} />
       <Projects data={data} />
+      <Rate />
+      <Contact />
       <Footer />
     </div>
   );

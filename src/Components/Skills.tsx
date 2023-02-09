@@ -20,8 +20,11 @@ export default function Skills({ data }: Props) {
       id="skills">
       <h2>Skills</h2>
       <ul>
-        {data?.skills.map((skill) => (
-          <Skill skill={skill} />
+        {data?.skills.map((skill, i) => (
+          <Skill
+            skill={skill}
+            key={i}
+          />
         ))}
       </ul>
     </section>
