@@ -10,7 +10,7 @@ export default function Rate({}: Props) {
 
     if (rate == null) return;
 
-    fetch("http://tijmevh.nl:3000/rate", {
+    fetch("https://tijmevh.nl:3000/rate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
