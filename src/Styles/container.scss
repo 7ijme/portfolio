@@ -64,9 +64,83 @@ header {
   }
 }
 
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 section {
   padding: 5rem 1.5rem;
   text-align: center;
+
+  &.introduction {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+
+    h1 {
+      padding: 0.1em 0;
+    }
+
+    h2,
+    h1 {
+      font-family: "Martian Mono", monospace;
+      position: relative;
+    }
+    h2 {
+      font-weight: 100;
+      margin-bottom: 5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0 1rem;
+      flex-wrap: wrap;
+      span {
+        position: relative;
+      }
+    }
+
+    h2 span:not(.animate):not(.animated) {
+      opacity: 0;
+    }
+
+    h1.animate,
+    h2 span.animate {
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+      &::before {
+        background: var(--background);
+        animation: typewriter calc(var(--time-per-letter) * var(--length))
+          forwards var(--delay);
+        animation-timing-function: steps(var(--length));
+      }
+      &::after {
+        background: white;
+        width: calc(1em / 10);
+        animation: typewriter calc(var(--time-per-letter) * var(--length))
+            steps(var(--length)) var(--delay) forwards,
+          blink 500ms ease-out infinite;
+      }
+    }
+  }
+
   h2 {
     font-family: "Archivo Black";
   }
@@ -114,7 +188,7 @@ section {
     gap: 1rem;
     align-items: center;
     ul {
-      max-width: 1500px;
+      max-width: min(80vw, 1500px);
       display: grid;
       //   display: flex;
       //   flex-wrap: wrap;

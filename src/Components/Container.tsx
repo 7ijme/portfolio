@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import data from "../assets/data.json";
 import Contact from "./Contact";
 import Rate from "./Rate";
+import Introduction from "./Introduction";
 
 type Props = {};
 
@@ -20,6 +21,7 @@ export default function Container({}: Props) {
   return (
     <div className="container">
       <Header />
+      <Introduction />
       <About />
       <Skills data={data} />
       <Projects data={data} />

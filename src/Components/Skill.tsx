@@ -39,7 +39,18 @@ export default function Skill({ skill }: Props) {
       <div
         ref={skillRef}
         className="skill"
-        style={{ backgroundColor: skill.bgcolor }}></div>
+        style={{
+          backgroundColor: skill.bgcolor,
+          animationDuration:
+            (skillRef?.current &&
+              (+skillRef?.current?.style
+                ?.getPropertyValue("--skill-width")
+                ?.replace("%", "") /
+                100) *
+                1.5 +
+                "s") ||
+            "1.5s",
+        }}></div>
       <h3>{skill.name}</h3>
     </div>
   );
