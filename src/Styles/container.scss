@@ -188,7 +188,7 @@ section {
     gap: 1rem;
     align-items: center;
     ul {
-      max-width: min(80vw, 1500px);
+      max-width: min(100%, 1500px);
       display: grid;
       //   display: flex;
       //   flex-wrap: wrap;
