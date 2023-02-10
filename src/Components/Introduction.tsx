@@ -3,22 +3,22 @@ import React, { useEffect } from "react";
 type Props = {};
 
 export default function Introduction({}: Props) {
-  const h1Value = "Tijme";
-  const h2Value = "Frontend Developer";
+  const title = "Tijme";
+  const description = "Frontend Developer";
 
-  const h1 = React.useRef<HTMLHeadingElement>(null);
-  const h2 = React.useRef<HTMLHeadingElement>(null);
+  const header = React.useRef<HTMLHeadingElement>(null);
+  const paragraph = React.useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const timePerLetter = "200ms";
-    h1.current?.style.setProperty("--length", h1Value.length + "");
-    h1.current?.style.setProperty("--delay", "500ms");
+    header.current?.style.setProperty("--length", title.length + "");
+    header.current?.style.setProperty("--delay", "500ms");
     // h2.current?.style.setProperty("--length", h2Value.length + "");
     // h2.current?.style.setProperty("--time-per-letter", timePerLetter);
-    h1.current?.style.setProperty("--time-per-letter", timePerLetter);
+    header.current?.style.setProperty("--time-per-letter", timePerLetter);
 
     const h2Spans =
-      h2.current?.querySelectorAll("span") ||
+      paragraph.current?.querySelectorAll("span") ||
       ([] as unknown as NodeListOf<HTMLSpanElement>);
 
     for (const span of h2Spans) {
@@ -57,11 +57,9 @@ export default function Introduction({}: Props) {
       )
     )
       setTimeout(() => {
-        h1.current?.classList.remove("animate");
-        h1.current?.classList.add("animated");
+        header.current?.classList.remove("animate");
+        header.current?.classList.add("animated");
         for (const index in Array.from(h2Spans)) {
-          console.log(getSpansBeforeThis(+index));
-          console.log(getTimeTaken(+index));
           setTimeout(() => {
             for (const span of getSpansBeforeThis(+index)) {
               span.classList.add("animated");
@@ -82,21 +80,32 @@ export default function Introduction({}: Props) {
             }
           }, getTimeTaken(+index));
         }
-      }, +(h1.current?.style.getPropertyValue("--delay").replace(/[A-z]/g, "") || 100) + +(h1.current?.style.getPropertyValue("--length") || 5) * +(h1.current?.style.getPropertyValue("--time-per-letter").replace(/[A-z]/g, "") || 100));
+      }, +(header.current?.style.getPropertyValue("--delay").replace(/[A-z]/g, "") || 100) + +(header.current?.style.getPropertyValue("--length") || 5) * +(header.current?.style.getPropertyValue("--time-per-letter").replace(/[A-z]/g, "") || 100));
   }, []);
 
   return (
     <section className="introduction">
       <h1
         className="animate"
-        ref={h1}>
-        {h1Value}
+        ref={header}>
+        {title}
       </h1>
-      <h2 ref={h2}>
-        {h2Value.split(" ").map((v) => (
-          <span>{v}</span>
-        ))}
-      </h2>
+      <p ref={paragraph}>
+        {description.split(" ").map((v, i) =>
+          v == "\n" ? (
+            <br />
+          ) : (
+            <span>
+              {v +
+                // add space if not last word
+                (v == description.split(" ").slice(-1)[0] ||
+                description.split(" ")?.[i + 1] == "\n"
+                  ? ""
+                  : " ")}
+            </span>
+          )
+        )}
+      </p>
     </section>
   );
 }
