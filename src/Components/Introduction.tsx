@@ -10,12 +10,14 @@ export default function Introduction({}: Props) {
   const paragraph = React.useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    const timePerLetter = "200ms";
+    const timePerLetter = "180ms" as const;
     header.current?.style.setProperty("--length", title.length + "");
     header.current?.style.setProperty("--delay", "500ms");
     // h2.current?.style.setProperty("--length", h2Value.length + "");
     // h2.current?.style.setProperty("--time-per-letter", timePerLetter);
     header.current?.style.setProperty("--time-per-letter", timePerLetter);
+
+    console.log(description.split(" "), paragraph.current);
 
     const h2Spans =
       paragraph.current?.querySelectorAll("span") ||
@@ -23,8 +25,8 @@ export default function Introduction({}: Props) {
 
     for (const span of h2Spans) {
       span.style.setProperty("--time-per-letter", timePerLetter);
-      span.style.setProperty("--length", span.textContent?.length + "");
-      span.style.setProperty("--delay", "100ms");
+      span.style.setProperty("--length", span.innerText?.length + "");
+      span.style.setProperty("--delay", "10ms");
     }
 
     function getSpansBeforeThis(index: number) {

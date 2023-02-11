@@ -65,8 +65,11 @@ header {
 }
 
 @keyframes typewriter {
+  from {
+    width: 0;
+  }
   to {
-    left: 100%;
+    width: calc(var(--length) * 1ch);
   }
 }
 
@@ -96,48 +99,50 @@ section {
       padding: 0.1em 0;
     }
 
-    p,
+    p span,
     h1 {
       font-family: "Martian Mono", monospace;
+      width: 0;
+      overflow: hidden;
       position: relative;
+      display: inline-block;
     }
     p {
       font-weight: 100;
       margin-bottom: 5rem;
-      // display: flex;
+      display: flex;
       justify-content: center;
-      gap: 0 1rem;
+      gap: 0 1ch;
       flex-wrap: wrap;
-      span {
-        // margin: 0 0.25em;
-        position: relative;
-      }
     }
 
-    p span:not(.animate):not(.animated) {
-      opacity: 0;
+    // h1:not(.animate):not(.animated),
+    // p span:not(.animate):not(.animated) {
+    //   width: 0ch;
+    // }
+
+    h1.animated,
+    p span.animated {
+      width: calc(var(--length) * 1ch);
     }
 
     h1.animate,
     p span.animate {
-      &::before,
+      animation: typewriter calc(var(--time-per-letter) * var(--length))
+        forwards var(--delay);
+      animation-timing-function: steps(var(--length));
+
       &::after {
         content: "";
         position: absolute;
-        inset: 0;
-      }
-      &::before {
-        background: var(--background);
-        animation: typewriter calc(var(--time-per-letter) * var(--length))
-          forwards var(--delay);
-        animation-timing-function: steps(var(--length));
-      }
-      &::after {
+
+        top: 0;
+        bottom: 0;
+        right: 0;
+
         background: white;
-        width: calc(1em / 10);
-        animation: typewriter calc(var(--time-per-letter) * var(--length))
-            steps(var(--length)) var(--delay) forwards,
-          blink 500ms ease-out infinite;
+        width: calc(1ch / 10);
+        animation: blink 500ms ease-out infinite;
       }
     }
   }
