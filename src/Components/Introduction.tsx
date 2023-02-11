@@ -13,8 +13,6 @@ export default function Introduction({}: Props) {
     const timePerLetter = "180ms" as const;
     header.current?.style.setProperty("--length", title.length + "");
     header.current?.style.setProperty("--delay", "500ms");
-    // h2.current?.style.setProperty("--length", h2Value.length + "");
-    // h2.current?.style.setProperty("--time-per-letter", timePerLetter);
     header.current?.style.setProperty("--time-per-letter", timePerLetter);
 
     console.log(description.split(" "), paragraph.current);
@@ -25,8 +23,13 @@ export default function Introduction({}: Props) {
 
     for (const span of h2Spans) {
       span.style.setProperty("--time-per-letter", timePerLetter);
-      span.style.setProperty("--length", span.innerText?.length + "");
       span.style.setProperty("--delay", "10ms");
+
+      // check if is last span
+      if (span === h2Spans[h2Spans.length - 1]) {
+        span.style.setProperty("--length", span.innerText?.length + "");
+      } else
+        span.style.setProperty("--length", span.innerText?.length + 1 + "");
     }
 
     function getSpansBeforeThis(index: number) {
@@ -83,7 +86,7 @@ export default function Introduction({}: Props) {
           }, getTimeTaken(+index));
         }
       }, +(header.current?.style.getPropertyValue("--delay").replace(/[A-z]/g, "") || 100) + +(header.current?.style.getPropertyValue("--length") || 5) * +(header.current?.style.getPropertyValue("--time-per-letter").replace(/[A-z]/g, "") || 100));
-  }, []);
+  }, [header, paragraph]);
 
   return (
     <section className="introduction">
@@ -95,15 +98,11 @@ export default function Introduction({}: Props) {
       <p ref={paragraph}>
         {description.split(" ").map((v, i) =>
           v == "\n" ? (
-            <br />
+            <div className="break" />
           ) : (
             <span>
-              {v +
-                // add space if not last word
-                (v == description.split(" ").slice(-1)[0] ||
-                description.split(" ")?.[i + 1] == "\n"
-                  ? ""
-                  : " ")}
+              {v}
+              {description.split(" ").length - 1 == i ? " " : ""}
             </span>
           )
         )}

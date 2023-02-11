@@ -109,11 +109,23 @@ section {
     }
     p {
       font-weight: 100;
-      margin-bottom: 5rem;
+      margin-bottom: 2em;
       display: flex;
+      height: 3em;
+
       justify-content: center;
-      gap: 0 1ch;
+      // gap: 0 1ch;
       flex-wrap: wrap;
+
+      span {
+        text-align: left;
+        height: min-content;
+      }
+
+      .break {
+        flex-basis: 100%;
+        height: 0;
+      }
     }
 
     // h1:not(.animate):not(.animated),
