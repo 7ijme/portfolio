@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
 
 type Props = {};
 
