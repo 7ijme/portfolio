@@ -24,13 +24,7 @@
     },
     { "name": "C#", "level": 80, "bgcolor": "#9b4993", "color": "white" },
     { "name": "Java", "level": 85, "bgcolor": "#f89820 ", "color": "white" },
-    { "name": "Rust", "level": 30, "bgcolor": "#ed6901 ", "color": "white" },
-    {
-      "name": "Social skills",
-      "level": 5,
-      "bgcolor": "#1877F2 ",
-      "color": "white"
-    }
+    { "name": "Rust", "level": 30, "bgcolor": "#ed6901 ", "color": "white" }
   ],
   "projects": [
     {
