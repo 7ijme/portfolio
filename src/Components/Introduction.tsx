@@ -5,104 +5,111 @@ type Props = {};
 export default function Introduction({}: Props) {
   const title = "Tijme";
   const description = "Frontend Developer";
+  const headerDelay = "500ms" as const;
+  const descriptionDelay = "10ms" as const;
+  const timePerLetter = "180ms" as const;
 
-  const header = React.useRef<HTMLHeadingElement>(null);
-  const paragraph = React.useRef<HTMLHeadingElement>(null);
+  const [headerClass, setHeaderClass] = React.useState("animate");
+  const [paragraphClasses, setParagraphClasses] = React.useState<string[]>(
+    new Array(description.split(" ").length).fill("")
+  );
 
   useEffect(() => {
-    const timePerLetter = "180ms" as const;
-    header.current?.style.setProperty("--length", title.length + "");
-    header.current?.style.setProperty("--delay", "500ms");
-    header.current?.style.setProperty("--time-per-letter", timePerLetter);
+    function getIndexesBeforeThis(index: number) {
+      // get the indexes of all spans before this one
+      const spansBeforeThis = [];
+      for (let i = 0; i < index; i++) {
+        spansBeforeThis.push(i);
+      }
 
-    console.log(description.split(" "), paragraph.current);
-
-    const h2Spans =
-      paragraph.current?.querySelectorAll("span") ||
-      ([] as unknown as NodeListOf<HTMLSpanElement>);
-
-    for (const span of h2Spans) {
-      span.style.setProperty("--time-per-letter", timePerLetter);
-      span.style.setProperty("--delay", "10ms");
-
-      // check if is last span
-      if (span === h2Spans[h2Spans.length - 1]) {
-        span.style.setProperty("--length", span.innerText?.length + "");
-      } else
-        span.style.setProperty("--length", span.innerText?.length + 1 + "");
-    }
-
-    function getSpansBeforeThis(index: number) {
-      const spansBeforeThis = Array.from(h2Spans).slice(0, index);
-      return spansBeforeThis;
+      return spansBeforeThis as number[];
     }
 
     function getTimeTaken(index: number) {
-      const spansBeforeThis = getSpansBeforeThis(index);
+      const spansBeforeThis = getIndexesBeforeThis(index);
       const timeTaken = spansBeforeThis.reduce((acc, span) => {
         return (
           acc +
-          +(span.style.getPropertyValue("--length") || 0) *
-            +(
-              span.style
-                .getPropertyValue("--time-per-letter")
-                .replace(/[A-z]/g, "") || 0
-            ) +
-          +(span.style.getPropertyValue("--delay").replace(/[A-z]/g, "") || 0)
+          +description.split(" ")[span].length *
+            +timePerLetter.replace(/[A-z]/g, "") +
+          +descriptionDelay.replace(/[A-z]/g, "")
         );
       }, 0);
       return index === 0 ? 0 : timeTaken;
     }
 
-    if (
-      !Array.from(h2Spans).some(
-        (span) =>
-          span.classList.contains("animate") ||
-          span.classList.contains("animated")
-      )
-    )
+    if (!paragraphClasses.some((v) => v === "animate" || v === "animated"))
       setTimeout(() => {
-        header.current?.classList.remove("animate");
-        header.current?.classList.add("animated");
-        for (const index in Array.from(h2Spans)) {
+        setHeaderClass("animated");
+        for (const index in paragraphClasses) {
           setTimeout(() => {
-            for (const span of getSpansBeforeThis(+index)) {
-              span.classList.add("animated");
-              span.classList.remove("animate");
-            }
+            const spansBeforeThis = getIndexesBeforeThis(+index);
 
-            const span = h2Spans[index];
-            span.classList.add("animate");
+            setParagraphClasses((prev) => {
+              const newParagraphClasses = [...prev];
+              // set class of all spans before this to animated
+              spansBeforeThis.forEach((i) => {
+                newParagraphClasses[+i] = "animated";
+              });
+
+              // set class of this span to animate
+              newParagraphClasses[+index] = "animate";
+              return newParagraphClasses;
+            });
 
             const STOP_BLINKING = false as const;
-            if (+index === h2Spans.length - 1 && STOP_BLINKING) {
+            if (+index === paragraphClasses.length - 1 && STOP_BLINKING) {
               setTimeout(() => {
-                for (const span of h2Spans) {
-                  span.classList.add("animated");
-                  span.classList.remove("animate");
-                }
+                setParagraphClasses(() => {
+                  const newParagraphClasses = new Array(
+                    description.split(" ").length
+                  ).fill("animated");
+                  return newParagraphClasses;
+                });
               }, getTimeTaken(+index + 1));
             }
           }, getTimeTaken(+index));
         }
-      }, +(header.current?.style.getPropertyValue("--delay").replace(/[A-z]/g, "") || 100) + +(header.current?.style.getPropertyValue("--length") || 5) * +(header.current?.style.getPropertyValue("--time-per-letter").replace(/[A-z]/g, "") || 100));
-  }, [header, paragraph]);
+      }, +(headerDelay.replace(/[A-z]/g, "") || 100) + title.length * +(timePerLetter.replace(/[A-z]/g, "") || 100));
+  }, []);
 
   return (
     <section className="introduction">
       <h1
-        className="animate"
-        ref={header}>
+        style={
+          {
+            "--length": title.length,
+            "--time-per-letter": timePerLetter,
+            "--delay": headerDelay,
+          } as React.CSSProperties
+        }
+        className={headerClass}>
         {title}
       </h1>
-      <p ref={paragraph}>
+      <p>
         {description.split(" ").map((v, i) =>
           v == "\n" ? (
             <div className="break" />
           ) : (
-            <span>
+            <span
+              className={paragraphClasses[i]}
+              style={
+                {
+                  "--length":
+                    v.length +
+                    (description.split(" ").length - 1 == i ||
+                    description.split(" ")[i + 1] == "\n"
+                      ? 0
+                      : 1),
+                  "--delay": descriptionDelay,
+                  "--time-per-letter": timePerLetter,
+                } as React.CSSProperties
+              }>
               {v}
-              {description.split(" ").length - 1 == i ? " " : ""}
+              {description.split(" ").length - 1 == i ||
+              description.split(" ")[i + 1] == "\n"
+                ? ""
+                : "\u00A0"}
             </span>
           )
         )}
