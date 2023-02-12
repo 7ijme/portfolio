@@ -27,6 +27,14 @@ export default function About({}: Props) {
         collaborate on projects with others who share my passion for
         programming.
         <br /> <br />
+        I believe that working in teams is essential for success and am
+        committed to contributing to a positive and productive work environment.
+        I have excellent communication skills and am comfortable working with
+        colleagues and clients from diverse backgrounds. In my free time, I am
+        team captain of my sports team, which has helped me develop strong
+        interpersonal skills. I am confident that I can bring these skills to
+        any team I work with and contribute to the success of the project.
+        <br /> <br />
         So if you're looking for a young and motivated developer, look no
         further. I am ready to take on new challenges and gain valuable
         experience while making a positive impact in the tech world.
