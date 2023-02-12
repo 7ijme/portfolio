@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 type Props = {};
 
@@ -7,7 +8,7 @@ export default function Introduction({}: Props) {
   const description = "Frontend Developer";
   const headerDelay = "500ms" as const;
   const descriptionDelay = "10ms" as const;
-  const timePerLetter = "180ms" as const;
+  const timePerLetter = "160ms" as const;
 
   const [headerClass, setHeaderClass] = React.useState("animate");
   const [paragraphClasses, setParagraphClasses] = React.useState<string[]>(
@@ -16,13 +17,11 @@ export default function Introduction({}: Props) {
 
   useEffect(() => {
     function getIndexesBeforeThis(index: number) {
-      // get the indexes of all spans before this one
       const spansBeforeThis = [];
       for (let i = 0; i < index; i++) {
         spansBeforeThis.push(i);
       }
-
-      return spansBeforeThis as number[];
+      return spansBeforeThis;
     }
 
     function getTimeTaken(index: number) {
@@ -41,24 +40,25 @@ export default function Introduction({}: Props) {
     if (!paragraphClasses.some((v) => v === "animate" || v === "animated"))
       setTimeout(() => {
         setHeaderClass("animated");
-        for (const index in paragraphClasses) {
+        for (let index = 0; index < paragraphClasses.length; index++) {
           setTimeout(() => {
-            const spansBeforeThis = getIndexesBeforeThis(+index);
+            const spansBeforeThis = getIndexesBeforeThis(index);
 
             setParagraphClasses((prev) => {
               const newParagraphClasses = [...prev];
               // set class of all spans before this to animated
               spansBeforeThis.forEach((i) => {
-                newParagraphClasses[+i] = "animated";
+                newParagraphClasses[i] = "animated";
               });
 
               // set class of this span to animate
-              newParagraphClasses[+index] = "animate";
+              newParagraphClasses[index] = "animate";
               return newParagraphClasses;
             });
 
             const STOP_BLINKING = false as const;
-            if (+index === paragraphClasses.length - 1 && STOP_BLINKING) {
+
+            if (index === paragraphClasses.length - 1 && STOP_BLINKING) {
               setTimeout(() => {
                 setParagraphClasses(() => {
                   const newParagraphClasses = new Array(
@@ -66,9 +66,9 @@ export default function Introduction({}: Props) {
                   ).fill("animated");
                   return newParagraphClasses;
                 });
-              }, getTimeTaken(+index + 1));
+              }, +timePerLetter.replace(/[A-z]/g, "") * description.split(" ")[index].length + +descriptionDelay.replace(/[A-z]/g, "") * 100);
             }
-          }, getTimeTaken(+index));
+          }, getTimeTaken(index));
         }
       }, +(headerDelay.replace(/[A-z]/g, "") || 100) + title.length * +(timePerLetter.replace(/[A-z]/g, "") || 100));
   }, []);
@@ -92,6 +92,7 @@ export default function Introduction({}: Props) {
             <div className="break" />
           ) : (
             <span
+              key={i}
               className={paragraphClasses[i]}
               style={
                 {
