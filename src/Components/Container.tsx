@@ -13,21 +13,21 @@ import Introduction from "./Introduction";
 type Props = {};
 
 export type Data = {
-  projects: ProjectType[];
-  skills: SkillType[];
+	projects: ProjectType[];
+	skills: SkillType[];
 };
 
 export default function Container({}: Props) {
-  return (
-    <div className="container">
-      <Header />
-      <Introduction />
-      <About />
-      <Skills data={data} />
-      <Projects data={data} />
-      <Rate />
-      <Contact />
-      <Footer />
-    </div>
-  );
+	return (
+		<div className="container">
+			<Header />
+			<Introduction />
+			<About />
+			<Skills data={data} />
+			<Projects data={data} />
+			<Rate />
+			<Contact />
+			<Footer />
+		</div>
+	);
 }
