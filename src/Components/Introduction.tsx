@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 
 type Props = {};
 
@@ -9,8 +9,8 @@ export default function Introduction({}: Props) {
 	const descriptionDelay = "10ms" as const;
 	const timePerLetter = "160ms" as const;
 
-	const [headerClass, setHeaderClass] = React.useState("animate");
-	const [paragraphClasses, setParagraphClasses] = React.useState<string[]>(
+	const [headerClass, setHeaderClass] = useState("animate");
+	const [paragraphClasses, setParagraphClasses] = useState<string[]>(
 		new Array(description.split(" ").length).fill("")
 	);
 
@@ -83,7 +83,7 @@ export default function Introduction({}: Props) {
 						"--length": title.length,
 						"--time-per-letter": timePerLetter,
 						"--delay": headerDelay,
-					} as React.CSSProperties
+					} as CSSProperties
 				}
 				className={headerClass}
 			>
@@ -108,7 +108,7 @@ export default function Introduction({}: Props) {
 											: 1),
 									"--delay": descriptionDelay,
 									"--time-per-letter": timePerLetter,
-								} as React.CSSProperties
+								} as CSSProperties
 							}
 						>
 							{v}
