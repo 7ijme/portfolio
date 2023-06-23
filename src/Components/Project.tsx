@@ -13,7 +13,7 @@ export default function Project({ project }: Props) {
 			</div>
 			<p>{project.description}</p>
 			<div className="link">
-				<a href={project.link} target="_blank">
+				<a href={project.link} target={project.no_page ? "_self" : "_blank"}>
 					Check it out!
 				</a>
 			</div>

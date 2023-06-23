@@ -7,6 +7,7 @@ export type ProjectType = {
   image: string;
   link: string;
   color: string;
+  no_page?: boolean;
 };
 
 type Props = {

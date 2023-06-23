@@ -51,8 +51,9 @@
 	{
 		"name": "Average mark",
 		"description": "Shows your average mark on the website Somtoday on Firefox",
-		"image": "",
+		"image": "./extension.png",
 		"link": "./extension.xpi",
+		"no_page": true,
 		"color": "#E66000"
 	}
   ]
