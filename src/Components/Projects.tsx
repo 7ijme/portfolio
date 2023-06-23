@@ -1,4 +1,3 @@
-import React from "react";
 import { Data } from "./Container";
 import Project from "./Project";
 
