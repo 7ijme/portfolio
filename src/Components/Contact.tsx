@@ -11,7 +11,7 @@ export default function Contact({}: Props) {
 					href="https://discord.com/channels/@me/331821337586827265/"
 					target={"_blank"}
 				>
-					Tijme#4938
+					7ijme
 				</a>
 			</p>
 			<p>
