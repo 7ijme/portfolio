@@ -24,7 +24,7 @@ export default function Rate({}: Props) {
 		"Tags": `${"star,".repeat(rate)}`,
 
       },
-      body: stringified,
+      body: comment,
     });
 
     setHasVoted(true);
